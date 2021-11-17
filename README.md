@@ -1,1 +1,1 @@
-# -web-dev-quiz-app-frontend
+# web-dev-quiz-app-frontend
