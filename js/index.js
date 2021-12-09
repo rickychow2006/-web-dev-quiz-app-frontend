@@ -20,11 +20,15 @@ playBtn.addEventListener('click', () => {
         <div class="info"> 4. You'll get points on the basis of your correct answers.</div> 
         </div>
         <div class="buttons">
-            <button class="button"> Exit Quiz </button>
-            <button class="button"> Continue </button>
+            <button class="exit_btn "> Exit Quiz </button>
+            <button class="continue_btn"> Continue </button>
         </div>`
         containerDiv.appendChild(infoDiv);
 
         const exitBtn = document.querySelector('.exit_btn')
         const continueBtn = document.querySelector('.continue_btn')
+
+        exitBtn.addEventListener('click', () => {
+            window.location.reload()
+        })
 })
