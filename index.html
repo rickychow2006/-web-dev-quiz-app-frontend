@@ -4,16 +4,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js" integrity="sha512-UR25UO94eTnCVwjbXozyeVd6ZqpaAE9naiEUBK/A+QDbfSTQFhPGj5lOR6d8tsgbBk84Ggb5A3EkjsOgPRPcKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <script defer type="text/javascript" src="js/src/Api.js"></script>
     <script defer type="text/javascript" src="js/src/Category.js"></script>
     <script defer type="text/javascript" src="js/src/Question.js"></script>
     <script defer type="text/javascript" src="js/index.js"></script>
+
     <title>Web Dev Quiz App</title>
 </head>
 <body>
-    
+    <div class="app-container">
+            <div class="header">
+                <h3>Welcome to Web Dev Quiz App!</h3>
+            </div>
+
+            <div class="input-container">
+                <input type="text" class="form-control" id="user-input" placeholder="Type Your Name" aria-label="Recipient's username with two button addons" value="">
+            </div>
+
+            <div class ="btn-container">
+                <button type="button" class="button" id="login-btn"> Log In</button>
+                <button type="button" class="button" id="signup-Btn"> Sign Up</button>
+            </div>
+
+            <div class="buttons">
+                <button class="button" id="play-btn"> Let's Play Without Login!</button>
+            </div>
+    </div> 
 </body>
 </html>
