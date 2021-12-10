@@ -1,17 +1,19 @@
-class Category{ 
-    static all = [];
+class Category {
+
+    static allCategories = [];
 
     constructor(name) {
         this.name = name;
-        this.renderCatgeory();
-        this.constructor.all.push(this);
+        this.renderCategory();
+        this.constructor.allCategories.push(this);
     }
-
-    renderCatgeory = () => {
+    
+    renderCategory = () => {
         const categoryDiv = document.createElement('div');
-        categoryDiv.className = 'categorycontainer';
+        categoryDiv.className = 'category-btn m-4';
         categoryDiv.innerHTML = `
-            <button class="button" id="play-btn""> ${this.name} </button>`;
+           <button type="button" class="btn btn-outline-secondary" style="width: 100%;">${this.name}</button>
+        `;    
         containerDiv.appendChild(categoryDiv);
-    }
+    }   
 }
