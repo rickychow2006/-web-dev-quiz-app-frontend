@@ -22,4 +22,25 @@ class apiUser {
             console.error('Error:', error);
         });
     }
+
+    updateScore = (currentUser) => {
+        let updateCategoryScore = {}
+        updateCategoryScore[`${currentCategory}_score`] = userScore;
+
+        fetch(`${this.url}/${currentUser.id}`, {
+            method: 'Path',
+            headers: {
+                'Conetent-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(updateCategoryScore)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+        })
+        .catch( (error) => {
+            console.log('Error:', error);
+        });
+    }
 }
