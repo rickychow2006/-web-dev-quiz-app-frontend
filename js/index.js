@@ -43,5 +43,12 @@ playBtn.addEventListener('click', () => {
         })
 })
 
+User.getAllUsers();
+
+userForm.addEventListener('click', (event) => {
+    if (event.target.innerHTML === "Log In") User.checkUserLogin();
+    if (event.target.innerHTML === "Sign Up") User.userSignup();
+})
+
 Question.init();
 Question.startGame();
