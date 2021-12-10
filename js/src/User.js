@@ -44,3 +44,24 @@ class apiUser {
         });
     }
 }
+
+class User {
+    
+    static all = [];
+
+    constructor(id, name, data_structure_score = 0, computer_science_score = 0, javascript_score = 0, modern_react_score = 0) {
+        this.id = id;
+        this.name = name;
+        this.data_structure_score = data_structure_score;
+        this.computer_science_score = computer_science_score;
+        this.javascript_score = javascript_score;
+        this.modern_react_score = modern_react_score;
+        this.constructor.all.push(this);
+    }
+
+    static getAllUsers() {
+        userApi.getUsers()
+            .then(users => users.data.forEach(user => new User(user.attributes.id, user.attributes.name, user.attributes.data_structure_score, user.attributes.computer_science_score, user.attributes.javascript_score, user.attributes.modern_react_score)))
+            .catch(error => alert(error));
+    }
+}
