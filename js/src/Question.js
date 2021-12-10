@@ -103,5 +103,56 @@ class Question {
         availableQuestions.splice(randomIndex, 1);
 
         acceptAnswer = true;
+        this.checker();
+    }
+
+    static checker() {
+        const selections = Array.from(document.getElementsByClassName('option'));
+
+        selections.forEach((selection) => {
+            selection.addEventListener('click', (event) => {
+                if (!acceptAnswer) return;
+
+                acceptAnswer = false;
+
+                const userAnswer = event.target;
+
+                const addClass = (userAnswer.innerText.trim() === currentQues.answer) ? "correct" : "incorrect";
+
+                let tickIconTag = '<div class="que-icon"><i class="fa fa-check-circle" style="font-size:18px;color:green"></i></div>';
+                let crossIconTag = '<div class="que-icon"><i class="fa fa-times-circle" style="font-size:18px;color:red" ></i></div>';
+
+                if (addClass === "correct") {
+                    userScore += 1;
+                    userAnswer.classList.add("correct", "text-success")
+                    userAnswer.insertAdjacentHTML("beforeend", tickIconTag);
+                }
+
+                else if (addClass === "incorrect"){
+                    userAnswer.classList.add("incorrectAns", "text-danger")
+                    userAnswer.insertAdjacentHTML("beforeend", crossIconTag);
+                    for (let i = 0; i < selections.length; i++) {
+                        if (selections[i].innerText === currentQues.answer) {
+                            selections[i].classList.add("correct", "text-success" );
+                            selections[i].insertAdjacentHTML("beforeend", tickIconTag);
+                        }
+                    }
+                }
+
+                const continue_btn = document.createElement('div');
+                continue_btn.className = `d-grid gap-2`;
+                continue_btn.innerHTML = `<button class="continuebtn btn btn-outline-secondary float-end p-1 mx-3"> Next Question </button> <br>`;
+
+                containerDiv.append(continue_btn);
+
+                const nextBtn = document.querySelector('.continuebtn')
+
+                nextBtn.addEventListener('click', () => {
+                    setTimeout( () => {
+                        this.showQuestions()
+                    }, 150)
+                })
+            })
+        })
     }
 }
