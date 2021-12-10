@@ -1,3 +1,5 @@
+const userApi = new apiUser('http://localhost:3000/api/users');
+
 const header = document.getElementById('header');
 const userForm = document.querySelector('.input-group');
 const loginBtn = document.getElementById('login-btn');
@@ -40,3 +42,6 @@ playBtn.addEventListener('click', () => {
                 .catch(error => alert(error));
         })
 })
+
+Question.init();
+Question.startGame();
