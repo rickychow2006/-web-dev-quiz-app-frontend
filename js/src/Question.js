@@ -171,31 +171,49 @@ class Question {
         scoreDiv.innerHTML = `<p class="text-muted p-4" style="text-align: center;"> Score</p>`
         scoreDiv.appendChild(endGameSummary);
 
+        let scoreStatus = '';
+
+        if (currentUser && (currentUser[`${currentCategory}_score`] < userScore)) {
+            currentUser[`${currentCategory}_score`] = userScore;
+            userApi.updateScore(currentUser);
+
+            scoreStatus = document.createElement('div');
+            scoreStatus.id = 'header';
+            scoreStatus.innerHTML = `
+                <p class="text-muted" style="text-align:center;">Nice Job, ${currentUser.name}!</p>
+                <p class="text-muted" style="text-align:center;">This is your highest score in this category.</p>
+            `;
+        }
+
         const showResultBtns = document.createElement('div');
-        showResultBtns.className = 'd-grid gap-4 p-3';
+        showResultBtns.className = 'resultBtnBox d-grid gap-4 p-3';
         showResultBtns.style.width = '100%';
         showResultBtns.innerHTML = `
-            <button type="button" class="btn btn-outline-secondary id="end-game-btns">Play Again </button>
-            <button type="button" class="btn btn-outline-secondary id="end-game-btn"> Home </button>
+            <button type="button" class="btn btn-outline-secondary" id="play-again-btn">Play Again </button>
+            <button type="button" class="btn btn-outline-secondary" id="home-btn"> Home </button>
         `;
 
-        containerDiv.append(scoreDiv, showResultBtns);
+        containerDiv.append(scoreDiv, scoreStatus, showResultBtns);
 
-        showResultBtns.addEventListener('click', (event) => {
+        let playAgainBtn = document.querySelector(".resultBtnBox #play-again-btn")
+        let homeBtn = document.querySelector(".resultBtnBox #home-btn")
+
+        playAgainBtn.addEventListener('click', (event) => {
             questionCount = 0;
             userScore = 0
-
-            if (event.target.innerText === 'Play Again') {
-                containerDiv.innerHTML = '';
-
-                currentCategory = '';
-                getCategories()
+        
+            containerDiv.innerHTML = '';
+        
+            currentCategory = '';
+        
+            getCategories()
                 .then(categories => categories.data.forEach(category => new Category(category.attributes.name)))
                 .catch(error => alert(error));
-            } else {
-                window.history.go()
-            }
+        
         })
-
+        
+        homeBtn.addEventListener('click', (event) => {
+            window.history.go();
+        })
     }
 }
