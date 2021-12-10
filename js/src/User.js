@@ -1,3 +1,5 @@
+let currentUser = {};
+
 class apiUser {
     constructor(url) {
         this.url = url;
@@ -63,5 +65,55 @@ class User {
         userApi.getUsers()
             .then(users => users.data.forEach(user => new User(user.attributes.id, user.attributes.name, user.attributes.data_structure_score, user.attributes.computer_science_score, user.attributes.javascript_score, user.attributes.modern_react_score)))
             .catch(error => alert(error));
+    }
+
+    static checkUserLogin() {
+        const userInput = document.getElementById('user-input').value.trim();
+        const userSearch = User.all.find(user => user.name === userInput);
+
+        if (userInput === '') {
+            userNote.innerHTML = `<small>Please enter your name.</small>`;
+        } else if (userSearch !== undefined) {
+            currentUser = userSearch;
+
+            userNote.innerHTML = `<small>Loggin in...</small>`;
+
+            setTimeout(function() {
+                userForm.remove();
+                userNote.remove();
+                header.innerHTML= `
+                    Welcome back, ${userSearch.name}!
+                `;
+            }, 1300);
+        } else {
+            userNote.innerHTML = `<small>User is not found.</small>`;
+        }
+    }
+
+    static userSignup() {
+        const userInput = document.getElementById('user-input').value.trim();
+        const userSearch = User.all.find(user => user.name === userInput);
+        const newUser = new User(`${User.all.length}`, `${userInput}`);
+
+        if (userInput === '') {
+            userNote.innerHTML = `<small>Please enter your name.</small>`;
+        } else if (userSearch !== undefined) {
+            userNote.innerHTML = `<small>User already exists. Please sign up with another name.</small>`;
+        } else {
+            currentUser = newUser;
+
+            userNote.innerHTML = `<small>Saving...</small>`;
+
+            setTimeout(function() {
+                userForm.remove();
+                userNote.remove();
+
+                header.innerHTML = `
+                    Welcome, ${userInput}!
+                `;
+
+                userApi.postUser(newUser);
+            }, 1300);
+        }
     }
 }
