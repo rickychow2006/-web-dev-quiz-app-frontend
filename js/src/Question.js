@@ -63,7 +63,7 @@ class Question {
         containerDiv.innerHTML = '';
 
         if (questionCount >= 10 || availableQuestions.length < 10) {
-            return
+            return this.showResult();
         }
 
         questionCount++;
@@ -158,5 +158,44 @@ class Question {
                 })
             })
         })
+    }
+
+    static showResult() {
+        
+        const endGameSummary = document.createElement('h1');
+        endGameSummary.className = 'score-tracker';
+        endGameSummary.innerText = userScore;
+
+        const scoreDiv = document.createElement('div');
+        scoreDiv.id = 'tracker';
+        scoreDiv.innerHTML = `<p class="text-muted p-4" style="text-align: center;"> Score</p>`
+        scoreDiv.appendChild(endGameSummary);
+
+        const showResultBtns = document.createElement('div');
+        showResultBtns.className = 'd-grid gap-4 p-3';
+        showResultBtns.style.width = '100%';
+        showResultBtns.innerHTML = `
+            <button type="button" class="btn btn-outline-secondary id="end-game-btns">Play Again </button>
+            <button type="button" class="btn btn-outline-secondary id="end-game-btn"> Home </button>
+        `;
+
+        containerDiv.append(scoreDiv, showResultBtns);
+
+        showResultBtns.addEventListener('click', (event) => {
+            questionCount = 0;
+            userScore = 0
+
+            if (event.target.innerText === 'Play Again') {
+                containerDiv.innerHTML = '';
+
+                currentCategory = '';
+                getCategories()
+                .then(categories => categories.data.forEach(category => new Category(category.attributes.name)))
+                .catch(error => alert(error));
+            } else {
+                window.history.go()
+            }
+        })
+
     }
 }
