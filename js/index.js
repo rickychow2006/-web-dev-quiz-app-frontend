@@ -1,4 +1,4 @@
-const userApi = new apiUser('http://localhost:3000/api/users');
+const userApi = new apiUser('https://web-dev-quiz-app-backend.herokuapp.com/api/users');
 
 const header = document.getElementById('header');
 const userForm = document.querySelector('.input-group');
@@ -36,7 +36,7 @@ playBtn.addEventListener('click', () => {
             containerDiv.innerHTML = `
             <div class =" text-center m-3 border-bottom">
             <h3>Select Category</h3> </div>`;
-            getCategories = () => fetch(`http://localhost:3000/api/v1/categories`).then(resp => resp.json())
+            getCategories = () => fetch(`https://web-dev-quiz-app-backend.herokuapp.com/api/v1/categories`).then(resp => resp.json())
             getCategories()
                 .then(categories => categories.data.forEach(category => new Category(category.attributes.name)))
                 .catch(error => alert(error));

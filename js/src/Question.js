@@ -4,7 +4,7 @@ let userScore = 0;
 let questionCount = 0;
 let availableQuestions = [];
 
-let getQuestions = (id) => fetch(`http://localhost:3000/api/v1/categories/${id}/questions`).then(resp => resp.json())
+let getQuestions = (id) => fetch(`https://web-dev-quiz-app-backend.herokuapp.com/api/v1/categories/${id}/questions`).then(resp => resp.json())
 
 class Question {
 
