@@ -86,3 +86,7 @@ p {
 .option:hover {
   background-color: #ecf5ff;
 }
+
+.option.disabled{
+  pointer-events: none;
+}
