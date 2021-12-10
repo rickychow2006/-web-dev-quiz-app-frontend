@@ -139,6 +139,10 @@ class Question {
                     }
                 }
 
+                for (let i = 0; i < selections.length; i++) {
+                    selections[i].classList.add("disabled");
+                }
+
                 const continue_btn = document.createElement('div');
                 continue_btn.className = `d-grid gap-2`;
                 continue_btn.innerHTML = `<button class="continuebtn btn btn-outline-secondary float-end p-1 mx-3"> Next Question </button> <br>`;
