@@ -22,7 +22,7 @@ class Question {
     }
 
     static init() {
-        for (let i = 1; i < 5; i++) {
+        for (let i = 25; i < 29; i++) {
             getQuestions(i).then(questions => questions.data.forEach(q => new Question(q.attributes.question, q.attributes.choice1, q.attributes.choice2, q.attributes.choice3, q.attributes.choice4, q.attributes.answer, q.attributes.category_name)));
         }
     }

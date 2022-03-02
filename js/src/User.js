@@ -30,7 +30,7 @@ class apiUser {
         updateCategoryScore[`${currentCategory}_score`] = userScore;
 
         fetch(`${this.url}/${currentUser.id}`, {
-            method: 'Path',
+            method: 'PATCH',
             headers: {
                 'Conetent-Type': 'application/json',
                 'Accept': 'application/json'
